@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiosco Uriel — Pirovano 2475, Monte Chingolo</title>
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="manifest" href="manifest-kiosco.json">
+<meta name="theme-color" content="#0D2B29">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0D2B29;
+    --night-2:#123834;
+    --cream:#FBF6EC;
+    --cream-2:#F3ECDC;
+    --amber:#F2A93B;
+    --amber-deep:#8A5A0F;
+    --coral:#E4572E;
+    --coral-deep:#7A2712;
+    --ink:#12201F;
+    --ink-soft:#4B5D5A;
+    --line: rgba(18,32,31,0.12);
+    --line-light: rgba(251,246,236,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Work Sans',sans-serif;}
+  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;margin:0;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+
+  /* Awning stripes */
+  .awning{height:26px;width:100%;background:repeating-linear-gradient(90deg,var(--coral) 0 44px, var(--cream) 44px 88px);}
+  .awning-edge{height:10px;width:100%;background:repeating-linear-gradient(-58deg,var(--night) 0 22px, transparent 22px 44px);background-color:var(--night-2);}
+
+  /* Hero */
+  .hero{background:var(--night);color:var(--cream);padding:56px 0 48px;}
+  .eyebrow{font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);font-weight:600;}
+  .hero h1{font-size:56px;line-height:0.98;font-weight:800;margin-top:10px;color:var(--cream);}
+  .hero-sub{margin-top:14px;font-size:17px;color:#CFE3E0;max-width:46ch;line-height:1.55;}
+  .hero-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:28px;}
+  .status-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:100px;border:1px solid var(--line-light);font-size:14px;font-weight:600;}
+  .status-dot{width:9px;height:9px;border-radius:50%;}
+  .status-open .status-dot{background:#6FCF7A;box-shadow:0 0 0 4px rgba(111,207,122,0.18);}
+  .status-closed .status-dot{background:#E4572E;box-shadow:0 0 0 4px rgba(228,87,46,0.18);}
+  .btn-order{display:inline-flex;align-items:center;gap:10px;background:var(--coral);color:var(--cream);font-weight:600;font-size:15px;padding:13px 22px;border-radius:100px;text-decoration:none;border:1px solid transparent;transition:transform 0.15s ease, background 0.15s ease;}
+  .btn-order:hover{background:#f0693f;transform:translateY(-1px);}
+  .meta-row{display:flex;flex-wrap:wrap;gap:24px;margin-top:26px;font-size:14px;color:#B9D2CE;}
+  .meta-row span{display:block;color:var(--cream);font-weight:600;font-size:15px;margin-top:2px;}
+
+  /* Categories */
+  .section{padding:48px 0;}
+  .section-head{margin-bottom:26px;}
+  .section-head .eyebrow{color:var(--coral-deep);}
+  .section-head h2{font-size:28px;font-weight:700;margin-top:6px;color:var(--ink);}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+  .cat-card{background:var(--cream-2);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:12px;}
+  .cat-icon{width:40px;height:40px;border-radius:10px;background:var(--night);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;font-family:'Bricolage Grotesque',sans-serif;}
+  .cat-card h3{font-size:18px;font-weight:700;}
+  .cat-card p{font-size:14px;color:var(--ink-soft);line-height:1.5;}
+  .cat-link{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--coral-deep);text-decoration:none;padding-top:6px;border-top:1px solid var(--line);}
+  .cat-link:hover{color:var(--coral);}
+
+  /* Info strip */
+  .info-strip{background:var(--night-2);color:var(--cream);}
+  .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;padding:40px 0;}
+  .info-item .eyebrow{color:var(--amber);}
+  .info-item p{font-size:15px;margin-top:8px;color:#D6E6E3;line-height:1.5;}
+
+  /* Footer CTA */
+  .footer-cta{padding:52px 0;text-align:center;}
+  .footer-cta h2{font-size:26px;font-weight:700;max-width:26ch;margin:0 auto 18px;}
+  .footer-note{font-size:13px;color:var(--ink-soft);margin-top:18px;}
+
+  @media (max-width:600px){
+    .hero h1{font-size:38px;}
+    .hero{padding:40px 0 36px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="awning"></div>
+<div class="awning-edge"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Kiosco de barrio · Monte Chingolo</p>
+    <h1>Kiosco Uriel</h1>
+    <p class="hero-sub">Bebidas, almacén, pan del día y cigarrillos a metros tuyo. Pedí por WhatsApp y te lo llevamos, o pasá cuando quieras.</p>
+    <div class="hero-row">
+      <span class="status-pill" id="statusPill">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Consultando horario…</span>
+      </span>
+      <a class="btn-order" id="heroOrder" href="#" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
+    </div>
+    <div class="meta-row">
+      <div>Dirección<span>Pirovano 2475, Monte Chingolo, Lanús</span></div>
+      <div>Horario<span>Todos los días, 10:30 a 22:30</span></div>
+      <div>Pedidos<span>+54 11 2879-0514</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Qué encontrás</p>
+      <h2>Elegí una categoría y armamos tu pedido</h2>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="wrap">
+    <div class="info-grid">
+      <div class="info-item">
+        <p class="eyebrow">Zona de entrega</p>
+        <p>Monte Chingolo y alrededores. Consultanos tu dirección por WhatsApp y te confirmamos tiempo y costo del envío.</p>
+      </div>
+      <div class="info-item">
+        <p class="eyebrow">Cómo pedir</p>
+        <p>Tocá el botón de una categoría, se abre WhatsApp con el mensaje armado, y solo tenés que sumar lo que quieras.</p>
+      </div>
+      <div class="info-item">
+        <p class="eyebrow">Medios de pago</p>
+        <p>Efectivo, transferencia o billetera virtual al retirar o recibir el pedido.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="footer-cta">
+  <div class="wrap">
+    <h2>¿Ya sabés qué querés? Pedilo directo</h2>
+    <a class="btn-order" id="footerOrder" href="#" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+    <p class="footer-note">Kiosco Uriel · Pirovano 2475, Monte Chingolo, Lanús · 10:30 a 22:30</p>
+  </div>
+</section>
+
+<script>
+  const PHONE = "541128790514";
+
+  const categories = [
+    { icon: "B", name: "Bebidas", desc: "Gaseosas, aguas, cervezas, jugos e isotónicas bien frías.", text: "Hola! Quiero hacer un pedido de bebidas." },
+    { icon: "A", name: "Almacén", desc: "Fideos, arroz, aceite, conservas y todo lo del día a día.", text: "Hola! Quiero hacer un pedido de almacén." },
+    { icon: "P", name: "Panadería", desc: "Pan fresco, facturas y algo dulce para acompañar el mate.", text: "Hola! Quiero hacer un pedido de panadería." },
+    { icon: "C", name: "Cigarrillos", desc: "Marcas nacionales e importadas, por paquete o sueltos.", text: "Hola! Quiero hacer un pedido de cigarrillos." },
+    { icon: "G", name: "Golosinos y snacks", desc: "Alfajores, chocolates, papas fritas y caramelos.", text: "Hola! Quiero hacer un pedido de golosinas y snacks." },
+    { icon: "H", name: "Hielo y varios", desc: "Hielo, carbón, pilas y esos imprevistos de último momento.", text: "Hola! Quiero hacer un pedido de hielo y varios." }
+  ];
+
+  const grid = document.getElementById("catGrid");
+  categories.forEach(cat => {
+    const card = document.createElement("div");
+    card.className = "cat-card";
+    const link = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(cat.text);
+    card.innerHTML =
+      '<div class="cat-icon">' + cat.icon + '</div>' +
+      '<h3>' + cat.name + '</h3>' +
+      '<p>' + cat.desc + '</p>' +
+      '<a class="cat-link" href="' + link + '" target="_blank" rel="noopener">Pedir ' + cat.name.toLowerCase() + ' →</a>';
+    grid.appendChild(card);
+  });
+
+  const generalLink = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent("Hola! Quiero hacer un pedido en Kiosco Uriel.");
+  document.getElementById("heroOrder").href = generalLink;
+  document.getElementById("footerOrder").href = generalLink;
+
+  function checkOpen(){
+    const now = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Argentina/Buenos_Aires" }));
+    const minutes = now.getHours() * 60 + now.getMinutes();
+    const open = 10 * 60 + 30;
+    const close = 22 * 60 + 30;
+    const isOpen = minutes >= open && minutes < close;
+
+    const pill = document.getElementById("statusPill");
+    const dot = document.getElementById("statusDot");
+    const text = document.getElementById("statusText");
+
+    if(isOpen){
+      pill.classList.add("status-open");
+      text.textContent = "Abierto ahora · cierra 22:30";
+    } else {
+      pill.classList.add("status-closed");
+      text.textContent = "Cerrado · abrimos 10:30";
+    }
+  }
+  checkOpen();
+</script>
+
+</body>
+</html>
